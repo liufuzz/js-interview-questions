@@ -1,0 +1,30 @@
+// 格式化倒计时时间格式
+    formate(time) {
+      if(time>=10){
+        return time;
+      }else{
+        return `0${time}`;
+      }
+    },
+    //倒计时
+    countDown: function(times = 100) {
+      var h = Math.floor(times / 60);
+      var m = Math.floor(times - h * 60) - 1;
+      var s = 60;
+      var timer = setInterval(() => {
+        s --;
+        if (s < 0) {
+          m --;
+          s = 59;
+        }
+        if(m < 0) {
+          h--;
+          m = 59;
+        }
+        if(h < 0) {
+          h = m = s = 0;
+          clearInterval(timer);
+        }
+        var remainingTime = this.formate(h) + ':' + this.formate(m) + ':' + this.formate(s);
+      }, 1000);
+    }
